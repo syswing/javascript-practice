@@ -5,24 +5,24 @@ function add(a, b) {
         let result = typeof num3 === 'undefined' ? Number(num1) + Number(num2) : Number(num1) + Number(num2) + num3
         return result
     }
-    let times = _a.length > _b.length ? _b.length : _a.length
+    let times = _a.length > _b.length ? _a.length : _b.length
     let ans = new Array();
     let n = 0
-    for(let i = 0 ; i< times ;i++){
-        console.log(_a[_a.length -1 - i],_b[_b.length - i - 1])
-        let res = caculator(_a[_a.length -1 - i],_b[_b.length - i - 1] , n)
-        // console.log(res)
+    for(let i = 0 ; i< times;i++){
+        let res = 0
+        if(_a.length -1 - i < 0){
+            res = caculator(_b[_b.length - i - 1],n)
+        }else if(_b.length - 1 -i < 0){
+            res = caculator(_a[_a.length - i -1],n)
+        }else{
+            res = caculator(_a[_a.length -1 - i],_b[_b.length - i - 1] , n)
+        }
         let e = res % 10;
         n = Math.floor(res / 10);
         ans.unshift(e) 
+        if(i === times - 1 && n !== 0){
+            ans.unshift(n)
+        }
     }
-    if(_a.length > _b.length){
-
-    }else{
-
-    }
-    console.log(ans)
-    // return (Number(a) + Number(b)).toString(); // Fix me!
+    return ans.join('')
 }
-let a = add("1123","223427");
-console.log(a);
